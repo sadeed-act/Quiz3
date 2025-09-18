@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Practice</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #eef2f7;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .quiz-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .question {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: 0.2s;
+      position: relative;
+    }
+    .question:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .options label {
+      display: block;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 8px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .answer {
+      margin-top: 8px;
+      font-weight: bold;
+      display: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      color: #0056b3; /* written answer color */
+    }
+    .mark {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-weight: bold;
+      display: none;
+    }
+    .mark.correct { color: #28a745; }
+    .mark.wrong { color: #dc3545; }
+    .wanted {
+      color: #c82333;
+      font-weight: bold;
+    }
+    button {
+      margin: 10px 5px;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    #submitBtn { background-color: #28a745; color: white; }
+    #submitBtn:hover { background-color: #218838; }
+    #resetBtn { background-color: #dc3545; color: white; }
+    #resetBtn:hover { background-color: #c82333; }
+    #scoreBox {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>SQL & PHP Quiz</h2>
+
+    <!-- Q1 -->
+    <div class="question" id="q1Box">
+      <p><b>Q1:</b> Which SQL statement is used to modify data in a database?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A. CREATE TABLE Ali SET status = 'active' WHERE user_id = 42;</label>
+        <label><input type="radio" name="q1" value="B"> B. UPDATE Ali SET status = 'active' WHERE user_id = 42;</label>
+        <label><input type="radio" name="q1" value="C"> C. ALTER TABLE Ali SET status = 'active' WHERE user_id = 42;</label>
+        <label><input type="radio" name="q1" value="D"> D. INSERT INTO TABLE Ali SET status = 'active' WHERE user_id = 42;</label>
+      </div>
+      <div class="answer" id="ans1">Correct Answer: B. UPDATE Ali SET status = 'active' WHERE user_id = 42;</div>
+      <span class="mark" id="mark1"></span>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question" id="q2Box">
+      <p><b>Q2:</b> What will be the output of the following code?</p>
+<pre>
+php
+class Car { 
+  public $model; 
+  public function __construct($model) { 
+    $this->model = $model; 
+  } 
+} 
+$myCar = new Car("Toyota"); 
+echo $myCar->model;
+</pre>
+      <input type="text" id="q2" placeholder="Your answer">
+      <div class="answer" id="ans2">Correct Answer: Toyota</div>
+      <span class="mark" id="mark2"></span>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question" id="q3Box">
+      <p><b>Q3:</b> Write PHP statement establishes a procedural connection to a MySQL database, assuming the server is <b>localhost</b>, username is <b>web_user</b>, password is <b>secure_pass</b>, and database name is <b>app_db</b>, and stores the connection in a variable named $conn?</p>
+      <textarea id="q3" rows="2" placeholder="Your answer"></textarea>
+      <div class="answer" id="ans3">Correct Answer: $conn = mysqli_connect("localhost", "web_user", "secure_pass", "app_db");</div>
+      <span class="mark" id="mark3"></span>
+    </div>
+
+    <!-- WANTED -->
+    <div class="question"><p class="wanted">Q4: WANTED</p></div>
+    <div class="question"><p class="wanted">Q5: WANTED</p></div>
+
+    <!-- Q6 -->
+    <div class="question" id="q6Box">
+      <p><b>Q6:</b> What will be the data type and value of the variable $result after the following code executes?</p>
+<pre>
+php
+$a = "5"; 
+$b = 2; 
+$result = $a * $b;
+</pre>
+      <input type="text" id="q6" placeholder="Your answer (e.g. Integer, 10)">
+      <div class="answer" id="ans6">Correct Answer: Integer, 10</div>
+      <span class="mark" id="mark6"></span>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question" id="q7Box">
+      <p><b>Q7:</b> Look at the following query:</p>
+<pre>
+SELECT products.name, categories.name
+FROM categories
+RIGHT JOIN products ON categories.id = products.category_id;
+</pre>
+      <p>Which table is considered the "right" table in this join?</p>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A. It depends on the database schema</label>
+        <label><input type="radio" name="q7" value="B"> B. The name column</label>
+        <label><input type="radio" name="q7" value="C"> C. products</label>
+        <label><input type="radio" name="q7" value="D"> D. categories</label>
+      </div>
+      <div class="answer" id="ans7">Correct Answer: C. products</div>
+      <span class="mark" id="mark7"></span>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question" id="q8Box">
+      <p><b>Q8:</b> Write an SQL SELECT query to get the name and email of all users from a table named <b>users</b> who were created after June 1, 2024. Order the results by name ascending order (A-Z).</p>
+      <textarea id="q8" rows="3" placeholder="Your answer"></textarea>
+      <div class="answer" id="ans8">Correct Answer:<br>
+        SELECT name, email FROM users WHERE created_at &gt; '2024-06-01' ORDER BY name ASC;
+      </div>
+      <span class="mark" id="mark8"></span>
+    </div>
+
+    <!-- WANTED -->
+    <div class="question"><p class="wanted">Q9: WANTED</p></div>
+    <div class="question"><p class="wanted">Q10: WANTED</p></div>
+
+    <!-- Buttons -->
+    <div style="text-align:center;">
+      <button id="submitBtn" onclick="checkAnswers()">Submit</button>
+      <button id="resetBtn" onclick="resetQuiz()">Reset</button>
+    </div>
+
+    <div id="scoreBox"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      let score = 0;
+      let total = 6; // Q1, Q2, Q3, Q6, Q7, Q8
+
+      // Reset colors
+      document.querySelectorAll(".question").forEach(q => q.style.borderColor = "#ddd");
+
+      // helper to show per-question marks
+      function setMark(id, correct) {
+        const markEl = document.getElementById("mark" + id);
+        markEl.style.display = "inline";
+        if (correct) {
+          markEl.textContent = "1/1";
+          markEl.className = "mark correct";
+        } else {
+          markEl.textContent = "0/1";
+          markEl.className = "mark wrong";
+        }
+      }
+
+      // Q1
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      if (q1 && q1.value === "B") {
+        score++; document.getElementById("q1Box").style.borderColor = "#28a745"; setMark(1, true);
+      } else { document.getElementById("q1Box").style.borderColor = "#dc3545"; setMark(1, false); }
+      document.getElementById("ans1").style.display = "block";
+
+      // Q2
+      const q2 = document.getElementById("q2").value.trim().toLowerCase();
+      if (q2 === "toyota") {
+        score++; document.getElementById("q2Box").style.borderColor = "#28a745"; setMark(2, true);
+      } else { document.getElementById("q2Box").style.borderColor = "#dc3545"; setMark(2, false); }
+      document.getElementById("ans2").style.display = "block";
+
+      // Q3
+      const q3 = document.getElementById("q3").value.trim();
+      if (q3.includes("mysqli_connect") && q3.includes("localhost") && q3.includes("web_user") && q3.includes("secure_pass") && q3.includes("app_db")) {
+        score++; document.getElementById("q3Box").style.borderColor = "#28a745"; setMark(3, true);
+      } else { document.getElementById("q3Box").style.borderColor = "#dc3545"; setMark(3, false); }
+      document.getElementById("ans3").style.display = "block";
+
+      // Q6
+      const q6 = document.getElementById("q6").value.trim().toLowerCase();
+      if (q6.includes("integer") && q6.includes("10")) {
+        score++; document.getElementById("q6Box").style.borderColor = "#28a745"; setMark(6, true);
+      } else { document.getElementById("q6Box").style.borderColor = "#dc3545"; setMark(6, false); }
+      document.getElementById("ans6").style.display = "block";
+
+      // Q7
+      const q7 = document.querySelector('input[name="q7"]:checked');
+      if (q7 && q7.value === "C") {
+        score++; document.getElementById("q7Box").style.borderColor = "#28a745"; setMark(7, true);
+      } else { document.getElementById("q7Box").style.borderColor = "#dc3545"; setMark(7, false); }
+      document.getElementById("ans7").style.display = "block";
+
+      // Q8
+      const q8 = document.getElementById("q8").value.trim().toLowerCase();
+      if (q8.includes("select") && q8.includes("name") && q8.includes("email") && q8.includes("users") && q8.includes("created_at") && q8.includes("order by")) {
+        score++; document.getElementById("q8Box").style.borderColor = "#28a745"; setMark(8, true);
+      } else { document.getElementById("q8Box").style.borderColor = "#dc3545"; setMark(8, false); }
+      document.getElementById("ans8").style.display = "block";
+
+      // Show score
+      const scoreBox = document.getElementById("scoreBox");
+      scoreBox.innerText = "Your Score: " + score + " / " + total;
+      scoreBox.style.display = "block";
+      scoreBox.style.background = score === total ? "#d4edda" : "#fff3cd";
+      scoreBox.style.color = score === total ? "#155724" : "#856404";
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll("input[type=text], textarea").forEach(el => el.value = "");
+      document.querySelectorAll("input[type=radio]").forEach(el => el.checked = false);
+      document.querySelectorAll(".answer").forEach(el => el.style.display = "none");
+      document.querySelectorAll(".question").forEach(q => q.style.borderColor = "#ddd");
+      document.querySelectorAll(".mark").forEach(m => { m.style.display = "none"; m.textContent = ""; });
+      document.getElementById("scoreBox").style.display = "none";
+    }
+  </script>
+</body>
+</html>
